@@ -1,38 +1,36 @@
-oapiVersion: scaffolder.backstage.io/v1beta3
+apiVersion: scaffolder.backstage.io/v1beta3
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-template
 kind: Template
 metadata:
   name: cria-repo-github
-  title: Cria repo (github)
+  title: Cria Repo GitHub
   description: Cria repositório no GitHub
   tags: [testeb3]
 spec:
   owner: user:guest
   type: service
+  # These parameters are used to generate the input form in the frontend, and are
+  # used to gather input data for the execution of the template.
   parameters:
-    - title: Repo Sumary
+    - title: Repo Summary
       required:
         - name
       properties:
         name:
           title: Name
           type: string
-          description: Nome do repositório
+          description: Unique name of the component
         owner:
-          title: Repo Owner
+          title: Owner
           type: string
           description: Owner of the component
-          ui:field: OwnerPicker
-          ui:options:
-            catalogFilter:
-              kind: Group
           
-    - title: GitHub Sumary
+    - title: GitHub Summary
       required:
         - repoUrl
       properties:
         repoUrl:
-          title: Git Service
+          title: Repositório
           type: string
           ui:field: RepoUrlPicker
           ui:options:
