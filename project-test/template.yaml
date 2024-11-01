@@ -1,4 +1,4 @@
-apiVersion: scaffolder.backstage.io/v1beta3
+oapiVersion: scaffolder.backstage.io/v1beta3
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-template
 kind: Template
 metadata:
@@ -8,7 +8,7 @@ metadata:
   tags: [testeb3]
 spec:
   owner: user:guest
-  type: service
+  type: repo
   parameters:
     - title: Repo Sumary
       required:
