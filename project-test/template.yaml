@@ -21,7 +21,11 @@ spec:
         owner:
           title: Repo Owner
           type: string
-          description: Dono do repositório
+          description: Owner of the component
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
           
     - title: GitHub Sumary
       required:
