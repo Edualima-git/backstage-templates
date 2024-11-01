@@ -15,6 +15,7 @@ spec:
     - title: Repo Summary
       required:
         - name
+        - owner
       properties:
         name:
           title: Name
@@ -24,13 +25,16 @@ spec:
           title: Owner
           type: string
           description: Owner of the component
-          
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              kind: Group          
     - title: GitHub Summary
       required:
         - repoUrl
       properties:
         repoUrl:
-          title: Repositório
+          title: GitHub Repo
           type: string
           ui:field: RepoUrlPicker
           ui:options:
