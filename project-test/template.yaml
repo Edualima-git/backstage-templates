@@ -5,6 +5,7 @@ metadata:
   name: test-template
   title: Cria projeto
   description: Cria projeto
+  tags: [testeb3]
 spec:
   owner: user:guest
   type: service
@@ -23,10 +24,7 @@ spec:
           title: Owner
           type: string
           description: Owner of the component
-          ui:field: OwnerPicker
-          ui:options:
-            catalogFilter:
-              kind: Group
+          
     - title: Repositório
       required:
         - repoUrl
@@ -39,8 +37,8 @@ spec:
             allowedHosts:
               - github.com
   steps:
-    - id: fetch-base
-      name: Fetch Base
+    - id: fetch-template
+      name: Fetch Template
       action: fetch:template
       input:
         url: ./template
@@ -48,3 +46,21 @@ spec:
           name: ${{parameters.name}}
           owner: ${{parameters.owner}}
           destination: ${{ parameters.repoUrl | parseRepoUrl }}
+
+    - id: publish
+      name: Publish
+      action: publish:github
+      input:
+        allowedHosts: ['github.com']
+        repoUrl: ${{parameters.repoUrl | parseRepoUrl}}
+
+    - id: register
+      name: Register
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{steps.publish.output.repoContentsUrl}}
+        catalogInfoPath: '/catalog-info.yaml'
+
+  output:
+      remoteUrl: ${{steps.publish.output.remoteUrl}}
+      entityRef: ${{steps.publish.output.entityRef}}
