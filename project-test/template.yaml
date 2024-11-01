@@ -52,7 +52,7 @@ spec:
       action: publish:github
       input:
         allowedHosts: ['github.com']
-        repoUrl: ${{parameters.repoUrl | parseRepoUrl}}
+        repoUrl: ${{parameters.repoUrl}}
 
     - id: register
       name: Register
